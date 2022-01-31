@@ -4,7 +4,7 @@
   "description": "",
   "main": "src.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/benjaminkitson/node-task-manager#readme",
   "dependencies": {
-    "mongodb": "^4.3.1"
+    "express": "^4.17.2",
+    "mongodb": "^4.3.1",
+    "mongoose": "^5.13.14",
+    "validator": "^13.7.0"
   }
 }

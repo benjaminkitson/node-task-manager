@@ -1,17 +1,66 @@
-const mongodb = require('mongodb')
-const MongoClient = mongodb.MongoClient
+  //reference only
 
-const connectionURL = 'mongodb://127.0.0.1:27017'
-const databaseName = 'task-manager'
+  // const tasks = db.collection('tasks')
 
-MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) => {
-  if (error) {
-    return console.log(error)
-  }
+  // db.collection('tasks').insertOne({
+  //   name: "Ben",
+  //   age: 26
+  // }, (error, result) => {
+  //   if (error) {
+  //     return console.log("User creation failed.")
+  //   }
 
-  const db = client.db(databaseName)
-  db.collection('users').insertOne({
-    name: "Ben",
-    age: 26
-  })
-})
+  //   console.log(result)
+  // })
+
+  // db.collection('tasks').insertMany([
+  //   {
+  //     title: "laundry",
+  //     completed: false
+  //   },{
+  //     title: "running",
+  //     completed: false
+  //   },{
+  //     title: "coding",
+  //     completed: false
+  //   }]).then((result) => {
+  //     console.log(result)
+  //   }).catch((error) => {
+  //     console.log(error)
+  //   })
+
+  // tasks.findOne(
+  //   {
+  //     title: "laundry",
+  //     completed: true
+  //   }, (error, result) => {
+  //   console.log(error ? error : result)
+  // });
+
+  // tasks.find({completed: false}).toArray((error, result) => {
+  //   console.log(error? error : result)
+  // })
+
+  // tasks.updateOne({
+  //   title: "poop",
+  // } , {
+  //   $set: {
+  //     title: "more testyboi",
+  //     completed: true,
+  //     other: "stinky"
+  //   }
+  // }).then((result) => {
+  //   console.log(result)
+  // }).catch((error) => {
+  //   console.log(error)
+  // })
+
+  // tasks.deleteOne({
+  //   completed: true
+  // }, (error, result) => {
+  //   if (error) {
+  //     return console.log("delete failed")
+  //   }
+
+  //   console.log(result)
+  // })
