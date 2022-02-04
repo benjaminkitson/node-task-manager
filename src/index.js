@@ -43,6 +43,37 @@ app.get('/users/:id', (req, res) => {
     })
 })
 
+app.patch('/users/:id', (req, res) => {
+  const updates = Object.keys(req.body)
+  const permittedUpdates = ["name", "email", "password"]
+  const isValid = updates.every((update) => permittedUpdates.includes(update))
+
+  if (!isValid) {
+    return res.status(400).send({error: "Invalid updates."})
+  }
+
+  User.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true })
+  .then((user) => {
+    if (!user) {
+      return res.status(404).send()
+    }
+    res.send(user)
+  }).catch((error) => {
+    res.status(400).send(error)
+  })
+})
+
+app.delete('/users/:id', (req, res) => {
+  User.findByIdAndDelete(req.params.id)
+    .then((user) => {
+      if (!user) {
+        return res.status(404).send()
+      }
+      res.send(user)
+    }).catch((error) => {
+      res.status(500).send
+    })
+})
 
 // Tasks routes
 
@@ -69,14 +100,63 @@ app.get('/tasks', (req, res) => {
 app.get('/tasks/:id', (req, res) => {
   const _id = req.params.id
   Task.findById(_id)
-    .then((user) => {
-      if (!user) return res.status(404).send()
-      res.send(user)
+    .then((task) => {
+      if (!task) return res.status(404).send()
+      res.send(task)
     }).catch((error) => {
       res.status(500).send(error)
+    })
+})
+
+app.patch('/tasks/:id', (req, res) => {
+  const updates = Object.keys(req.body)
+  const permittedUpdates = ["title", "completed"]
+  const isValid = updates.every((update) => {permittedUpdates.includes(update)})
+
+  if (!isValid) {
+    return res.status(400).send({error: "Invalid updates."})
+  }
+
+  Task.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true })
+    .then((task) => {
+      if (!task) {
+        return res.status(404).send()
+      }
+      res.send(task)
+    }).catch((error) => {
+      res.status(400).send(error)
+    })
+})
+
+app.delete('/tasks/:id', (req, res) => {
+  Task.findByIdAndDelete(req.params.id)
+    .then((task) => {
+      if (!task) {
+        return res.status(404).send()
+      }
+      res.send(task)
+    }).catch((error) => {
+      res.status(500).send
     })
 })
 
 app.listen(port, () => {
   console.log("Hello!")
 })
+
+
+
+// 'Challenge' bits
+
+const updateAgeAndCount = async (id, age) => {
+  await User.findByIdAndUpdate(id, { age })
+  const count = await User.countDocuments({ age })
+  return count
+}
+
+
+const deleteTaskAndCount = async (id) => {
+  await Task.findByIdAndDelete(id)
+  const count = await Task.countDocuments({ completed: false })
+  return count
+}

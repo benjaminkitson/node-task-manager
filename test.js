@@ -13,38 +13,64 @@
 // })
 
 
-function doubleTwoOrThree(x) {
-  const doPromise = new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (x === 2 || x === 3) {
-        resolve(2 * x)
-      }
-      reject("Gots to be 2 or 3")
-    }, 1000)
-  })
+// function doubleTwoOrThree(x) {
+//   const doPromise = new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       if (x === 2 || x === 3) {
+//         resolve(2 * x)
+//       }
+//       reject("Gots to be 2 or 3")
+//     }, 1000)
+//   })
 
-  return doPromise
+//   return doPromise
+// }
+
+// function halfFour(y) {
+//   const doMorePromise = new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       if (y === 4) {
+//         resolve(y / 2)
+//       }
+//       reject("Should have been 4")
+//     }, 1000)
+//   })
+
+//   return doMorePromise
+// }
+
+// doubleTwoOrThree(1)
+//   .then((result) => {
+//     console.log(result)
+//     return halfFour(result)
+//   }).then((result2) => {
+//     console.log(result2)
+//   }).catch((error) => {
+//     console.log(error)
+//   })
+
+function multiply(x) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (x != 5) {
+        reject("Five please!")
+      }
+
+      resolve(x * 2)
+    }, 1000);
+  })
 }
 
-function halfFour(y) {
-  const doMorePromise = new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (y === 4) {
-        resolve(y / 2)
-      }
-      reject("Should have been 4")
-    }, 1000)
-  })
-
-  return doMorePromise
+async function doubleFive(x) {
+  const result = await multiply(5)
+  return result
 }
 
-doubleTwoOrThree(1)
+
+
+doubleFive(5)
   .then((result) => {
     console.log(result)
-    return halfFour(result)
-  }).then((result2) => {
-    console.log(result2)
   }).catch((error) => {
     console.log(error)
   })
