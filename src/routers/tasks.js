@@ -1,41 +1,47 @@
 const express = require('express');
 require('../db/mongoose');
-const Task = require('../db/models/task')
+const Task = require('../models/task')
+const authenticate = require('../middleware/authenticate')
 
 const taskRouter = new express.Router();
 
-taskRouter.post('/tasks', (req, res) => {
-  const task = new Task(req.body)
+taskRouter.post('/tasks', authenticate, (req, res) => {
+  // const task = new Task(req.body)
+
+  const task = new Task({
+    ... req.body,
+    userId: req.user._id
+  })
+
   task.save()
     .then((task) => {
-      res.send(task)
+      res.status(201).send(task)
     })
     .catch((error) => {
       res.status(500).send(error)
     })
 })
 
-taskRouter.get('/tasks', (req, res) => {
-  Task.find({})
-    .then((tasks) => {
-      res.send(tasks)
+taskRouter.get('/tasks', authenticate, (req, res) => {
+  req.user.populate('tasks').execPopulate()
+    .then((user) => {
+      res.send(user.tasks)
     }).catch((error) => {
       res.status(500).send(error)
     })
 })
 
-taskRouter.get('/tasks/:id', (req, res) => {
-  const _id = req.params.id
-  Task.findById(_id)
-    .then((task) => {
-      if (!task) return res.status(404).send()
-      res.send(task)
-    }).catch((error) => {
-      res.status(500).send(error)
-    })
+taskRouter.get('/tasks/:id', authenticate, (req, res) => {
+    Task.findOne({ _id: req.params.id, userId: req.user._id })
+      .then((task) => {
+        if (!task) return res.status(404).send()
+        res.send(task)
+      }).catch((error) => {
+        res.status(500).send(error)
+      })
 })
 
-taskRouter.patch('/tasks/:id', (req, res) => {
+taskRouter.patch('/tasks/:id', authenticate, (req, res) => {
   const updates = Object.keys(req.body)
   const permittedUpdates = ["title", "completed"]
   const isValid = updates.every((update) => {
@@ -48,25 +54,26 @@ taskRouter.patch('/tasks/:id', (req, res) => {
     return res.status(400).send({ error: "Invalid updates." })
   }
 
-  Task.findById(req.params.id)
+  Task.findOne({ _id: req.params.id, userId: req.user._id })
     .then((task) => {
+      if (!task) {
+        return res.status(404).send()
+      }
       updates.forEach((update) => {
         task[update] = req.body[update]
       })
       return task.save()
     })
     .then((task) => {
-      if (!task) {
-        return res.status(404).send()
-      }
       res.send(task)
-    }).catch((error) => {
+    })
+    .catch((error) => {
       res.status(500).send(error)
     })
 })
 
-taskRouter.delete('/tasks/:id', (req, res) => {
-  Task.findByIdAndDelete(req.params.id)
+taskRouter.delete('/tasks/:id', authenticate, (req, res) => {
+  Task.findOneAndDelete({ _id: req.params.id, userId: req.user._id })
     .then((task) => {
       if (!task) {
         return res.status(404).send()

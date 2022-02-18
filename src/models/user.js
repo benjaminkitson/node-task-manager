@@ -3,6 +3,8 @@ const validator = require('validator')
 const bcrypt = require('bcryptjs');
 const jsonwebtoken = require('jsonwebtoken');
 const jwt = require('jsonwebtoken')
+const Task = require("./task")
+
 
 const userSchema = new mongoose.Schema({
   name:
@@ -30,20 +32,48 @@ const userSchema = new mongoose.Schema({
     }
   },
   tokens: [{
-    token:{
+    token:  {
       type: String,
       required: true
     }
   }]
+},{
+  timestamps: true
 });
+
+userSchema.virtual('tasks', {
+  ref: 'Task',
+  localField: '_id',
+  foreignField: 'userId'
+})
+
+
+userSchema.methods.toJSON = function() {
+  const user = this.toObject()
+  delete user.password
+  delete user.tokens
+  console.log(user)
+  return user
+}
 
 
 userSchema.methods.generateAuthToken = function() {
   const tokenPromise = new Promise((resolve, reject) => {
-    const token = jwt.sign({_id: this.id.toString()}, 'heckinsecret');
-    resolve(token);
-    reject("Token creation failed")
-  })
+    const token = jwt.sign({_id: this._id.toString()}, 'heckinsecret');
+    this.tokens = this.tokens.concat({token});
+    return this.save()
+      .then((result) => {
+        if (!result) {
+          reject("Could not save token.")
+        }
+        if (!token) {
+          reject("Token creation failed.")
+        }
+        resolve(token);
+      }).catch((error) => {
+        reject(error)
+      })
+    })
 
   return tokenPromise
 }
@@ -79,6 +109,13 @@ userSchema.pre('save', async function(callback) {
   if (this.isModified('password')) {
     this.password = await bcrypt.hash(this.password, 8)
   }
+
+  callback()
+})
+
+
+userSchema.pre('remove', async function(callback) {
+  await Task.deleteMany({ userId: this._id})
 
   callback()
 })
