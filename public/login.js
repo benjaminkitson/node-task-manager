@@ -1,4 +1,6 @@
 const loginForm = document.getElementById('login-form')
+const errors = document.querySelector('.login-errors')
+let tasks
 
 loginForm.addEventListener('submit', (e) => {
   e.preventDefault()
@@ -16,11 +18,13 @@ loginForm.addEventListener('submit', (e) => {
   })
     .then(response => response.json())
     .then((data) => {
-      if (data.error) return console.log("Invalid details")
+      if (data.error) {
+        return errors.innerHTML = "Invalid login details"
+      }
 
-      console.log(data)
+      errors.innerHTML = "Hello!"
       document.cookie = `token=${data.token}`
-      fetch("/users/me", {
+      fetch("/tasks", {
       headers: {
         "Content-Type": "application/json; charset=UTF-8",
         "Authorization": `${data.token}`

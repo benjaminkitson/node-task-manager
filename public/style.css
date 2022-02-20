@@ -28,3 +28,7 @@ h1 {
 #login-form > input {
   margin: 20px;
 }
+
+.login-errors {
+  height: 50px;
+}
