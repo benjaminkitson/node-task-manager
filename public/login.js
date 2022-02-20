@@ -4,6 +4,9 @@ let tasks
 
 document.cookie="test=2"
 
+// Move this into separate file
+
+
 function parseCookies() {
   const cookiePairs = document.cookie.split(';')
   const cookies = cookiePairs.map((pair) => {
