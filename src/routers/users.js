@@ -68,7 +68,8 @@ userRouter.post('/users/logoutall', authenticate, async (req, res) => {
 
 
 userRouter.get('/users/me', authenticate, (req, res) => {
-  res.send(req.user)
+  console.log("stinky")
+  res.status(200).send(req.user)
 })
 
 

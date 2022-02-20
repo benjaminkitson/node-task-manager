@@ -52,7 +52,6 @@ userSchema.methods.toJSON = function() {
   const user = this.toObject()
   delete user.password
   delete user.tokens
-  console.log(user)
   return user
 }
 
@@ -64,10 +63,10 @@ userSchema.methods.generateAuthToken = function() {
     return this.save()
       .then((result) => {
         if (!result) {
-          reject("Could not save token.")
+          reject({error: 'Could not save token.'})
         }
         if (!token) {
-          reject("Token creation failed.")
+          reject({error: 'Token creation failed.'})
         }
         resolve(token);
       }).catch((error) => {
@@ -85,14 +84,14 @@ userSchema.statics.findByCredentials = (email, password) => {
     User.findOne({email})
       .then((result) => {
         if (!result) {
-          reject("Login failed.")
+          reject({error: 'Login failed.'})
         }
         user = result
         return bcrypt.compare(password, user.password)
       })
       .then((result) => {
         if (!result) {
-          reject("Login failed.")
+          reject({error: 'Login failed.'})
         }
         resolve(user)
       })
