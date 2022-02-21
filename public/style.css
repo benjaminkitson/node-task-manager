@@ -61,14 +61,14 @@ body {
   align-items: center;
 }
 
-#login-form, #signup-form {
+#login-form, #signup-form, #newtask-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-#login-form > input, #signup-form > input {
+#login-form > input, #signup-form > input, #newtask-form > input{
   margin: 20px;
   height: 30px;
   width: 200px;
@@ -78,6 +78,13 @@ body {
   margin-top: 20px;
 }
 
-#login-errors, #login-errors {
+#login-errors, #signup-errors, #newtask-errors {
   height: 20px;
+}
+
+#tasks {
+  margin: 20px;
+  border: 1px solid black;
+  height: 70vh;
+  width: 80vw;
 }
