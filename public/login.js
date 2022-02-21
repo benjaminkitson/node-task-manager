@@ -1,6 +1,7 @@
 const loginForm = document.getElementById('login-form')
-const errors = document.querySelector('.login-errors')
+const errors = document.getElementById('login-errors')
 const greeting = document.getElementById('greeting')
+const popup = document.getElementById('popup')
 let tasks
 
 
@@ -8,15 +9,13 @@ loginForm.addEventListener('submit', (e) => {
   e.preventDefault()
   const email = loginForm.querySelector('.email').value
   const password = loginForm.querySelector('.password').value
+  const data = JSON.stringify({email, password})
   fetch("/users/login", {
     method: "post",
     headers: {
       "Content-Type": "application/json; charset=UTF-8"
     },
-    body: JSON.stringify({
-      "email": email,
-      "password": password
-    })
+    body: data
   })
     .then(response => response.json())
     .then((data) => {
@@ -25,7 +24,7 @@ loginForm.addEventListener('submit', (e) => {
       }
 
       greeting.innerHTML = `Hello ${data.user.name}`
-      loginPopup.style.display = "none"
+      popup.style.display = "none"
       document.cookie = `taskToken=${data.token}`
       fetch("/tasks", {
       headers: {
