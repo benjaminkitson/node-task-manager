@@ -36,7 +36,13 @@ function taskBuilder(task) {
   const deleteButtonText = document.createTextNode("Delete")
   deleteButton.appendChild(deleteButtonText)
 
+  const doneButton = document.createElement("button")
+  doneButton.setAttribute("class", "done")
+  const doneButtonText = document.createTextNode("Done")
+  doneButton.appendChild(doneButtonText)
+
   buttons.appendChild(deleteButton)
+  buttons.appendChild(doneButton)
   newTask.appendChild(content)
   newTask.appendChild(buttons)
   return newTask

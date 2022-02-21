@@ -10,6 +10,22 @@
 button {
   border-radius: 3px;
   border: 1px solid grey;
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.2);
+  transition: transform 0.1s, box-shadow 0.1s;
+  transform: translateY(0px);
+}
+
+button:hover {
+  cursor: pointer;
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
+  transition: transform 0.1s, box-shadow 0.1s;
+  transform: translateY(0px);
+}
+
+button:active {
+  transform: translateY(3px);
+  box-shadow: none;
+  transition: transform 0.1s, box-shadow 0.1s;
 }
 
 body {
@@ -111,19 +127,30 @@ body {
 
 .delete {
   width: 100px;
-  height: 40px;
+  height: 100%;
   background-color: rgb(158, 0, 0);
   color: white;
 }
 
-.buttons{
+
+.done {
+  width: 100px;
+  height: 100%;
+  background-color: rgb(38, 144, 0);
+  color: white;
+  margin-left: 10px;
+}
+
+.buttons {
   opacity: 0;
-  transition: opacity 0.3s
+  transition: all 0.3s;
+  height: 20px;
 }
 
 .task:hover > .buttons {
   opacity: 1;
-  transition: opacity 0.3s
+  transition: all 0.3s;
+  height: 40px;
 }
 
 .cancel {
