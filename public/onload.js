@@ -25,10 +25,17 @@ function getToken() {
 function taskBuilder(task) {
   const newTask = document.createElement("div")
   newTask.setAttribute("class", "task")
+  newTask.setAttribute("data-id", task.id)
   const content = document.createTextNode(task.title)
   const buttons = document.createElement("div")
+  buttons.setAttribute("class", "buttons")
   const deleteButton = document.createElement("button")
+  deleteButton.setAttribute("class", "delete")
+  const deleteButtonText = document.createTextNode("Delete")
+  deleteButton.appendChild(deleteButtonText)
+  buttons.appendChild(deleteButton)
   newTask.appendChild(content)
+  newTask.appendChild(buttons)
   return newTask
 }
 
