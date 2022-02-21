@@ -45,7 +45,8 @@ userRouter.post('/users/login', (req, res) => {
 
 userRouter.post('/users/logout', authenticate, async (req, res) => {
   try {
-    req.user.tokens = req.user.tokens.filter(token => token !== req.token)
+    req.user.tokens = req.user.tokens.filter(token => token.token !== req.token)
+    console.log(req.user.tokens)
     await req.user.save()
 
     res.send()
