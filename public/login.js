@@ -2,7 +2,7 @@ const loginForm = document.getElementById('login-form')
 const errors = document.getElementById('login-errors')
 const greeting = document.getElementById('greeting')
 const popup = document.getElementById('popup')
-let tasks
+const loginPartial = document.getElementById('login-partial')
 
 
 loginForm.addEventListener('submit', (e) => {
@@ -25,6 +25,8 @@ loginForm.addEventListener('submit', (e) => {
 
       greeting.innerHTML = `Hello ${data.user.name}`
       popup.style.display = "none"
+      loginPartial.style.display = "none"
+
       document.cookie = `taskToken=${data.token}`
       fetch("/tasks", {
       headers: {
@@ -33,6 +35,6 @@ loginForm.addEventListener('submit', (e) => {
       }
       })
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => renderTasks(data.tasks))
     })
 })

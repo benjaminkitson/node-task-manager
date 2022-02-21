@@ -39,14 +39,14 @@ body {
   background-color: rgba(158, 0, 0, 0.8);
 }
 
-#login-partial, #signup-partial {
+#login-partial, #signup-partial, #newtask-partial {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-#signup-partial {
+#signup-partial, #newtask-partial {
   display: none;
 }
 
@@ -84,7 +84,24 @@ body {
 
 #tasks {
   margin: 20px;
-  border: 1px solid black;
   height: 70vh;
   width: 80vw;
+}
+
+.task {
+  width: 100%;
+  height: 50px;
+  border-radius: 3px;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  padding-left: 40px;
+  margin-bottom: 10px;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.3);
+  transition: height 0.3s
+}
+
+.task:hover {
+  height: 100px;
+  transition: height 0.3s
 }

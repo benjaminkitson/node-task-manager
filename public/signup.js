@@ -1,6 +1,5 @@
 const signUpHere = document.getElementById("sign-up-here")
 const signupPartial = document.getElementById("signup-partial")
-const loginPartial = document.getElementById("login-partial")
 const signupForm = document.getElementById("signup-form")
 
 signUpHere.addEventListener("click", () => {
@@ -29,6 +28,7 @@ signupForm.addEventListener('submit', (e) => {
 
     greeting.innerHTML = `Hello ${data.user.name}`
     popup.style.display = "none"
+    signupPartial.style.display = "none"
     document.cookie = `taskToken=${data.token}`
   })
 })

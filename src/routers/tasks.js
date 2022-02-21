@@ -25,7 +25,7 @@ taskRouter.post('/tasks', authenticate, (req, res) => {
 taskRouter.get('/tasks', authenticate, (req, res) => {
   req.user.populate('tasks').execPopulate()
     .then((user) => {
-      res.send(user)
+      res.send({user, "tasks": user.tasks})
     }).catch((error) => {
       res.status(500).send(error)
     })
