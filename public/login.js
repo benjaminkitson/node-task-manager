@@ -2,7 +2,6 @@ const loginForm = document.getElementById('login-form')
 const errors = document.querySelector('.login-errors')
 let tasks
 
-document.cookie="test=2"
 
 // Move this into separate file
 
