@@ -11,9 +11,8 @@ myTasks.addEventListener("click", (e) => {
   if (e.target.classList.contains("delete")) {
     task = e.target.parentNode.parentNode
     taskId = e.target.parentNode.parentNode.dataset.id
-  }
   fetch(`/tasks/${taskId}`, {
-    method: "delete",
+    method: "DELETE",
     headers: {
       "Authorization": `Bearer ${getToken()}`,
       "Content-Type": "application/json; charset=UTF-8"
@@ -24,4 +23,5 @@ myTasks.addEventListener("click", (e) => {
     deleteLocalTask(task, taskId)
     console.log(tasks)
   })
+}
 })

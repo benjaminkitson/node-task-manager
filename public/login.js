@@ -11,7 +11,7 @@ loginForm.addEventListener('submit', (e) => {
   const password = loginForm.querySelector('.password').value
   const data = JSON.stringify({email, password})
   fetch("/users/login", {
-    method: "post",
+    method: "POST",
     headers: {
       "Content-Type": "application/json; charset=UTF-8"
     },
@@ -23,7 +23,7 @@ loginForm.addEventListener('submit', (e) => {
         return errors.innerHTML = "Invalid login details"
       }
 
-      greeting.innerHTML = `Hello ${data.user.name}`
+      greeting.innerHTML = `Hi ${data.user.name}!`
       popup.style.display = "none"
       loginPartial.style.display = "none"
 

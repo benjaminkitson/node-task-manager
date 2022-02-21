@@ -37,12 +37,12 @@ function taskBuilder(task) {
   deleteButton.appendChild(deleteButtonText)
 
   const doneButton = document.createElement("button")
-  doneButton.setAttribute("class", "done")
-  const doneButtonText = document.createTextNode("Done")
+  doneButton.setAttribute("class", "mark-as-done")
+  const doneButtonText = document.createTextNode("Mark as done")
   doneButton.appendChild(doneButtonText)
 
-  buttons.appendChild(deleteButton)
   buttons.appendChild(doneButton)
+  buttons.appendChild(deleteButton)
   newTask.appendChild(content)
   newTask.appendChild(buttons)
   return newTask
@@ -72,7 +72,7 @@ function isLoggedIn() {
       }
       popup.style.display = "none"
       loginPartial.style.display = "none"
-      greeting.innerHTML = `Hello ${data.user.name}`
+      greeting.innerHTML = `Hi ${data.user.name}!`
       tasks = data.tasks
       console.log(tasks)
       renderTasks(tasks)

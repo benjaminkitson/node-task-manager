@@ -6,7 +6,7 @@ const authenticate = async (req, res, next) => {
 
     // const token = req.headers.cookie.replace('token=', '')
     // This seems to work as an alternative when trying to redirect with res.render - Leave commented for now, maybe revisit later.
-
+    console.log("hello")
 
     const token = req.header('Authorization').replace('Bearer ', '')
     const decoded = jwt.verify(token, 'heckinsecret')

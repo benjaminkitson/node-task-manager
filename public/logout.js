@@ -11,7 +11,7 @@ requestLogout.addEventListener('click', () => {
 
 logOut.addEventListener('click', () => {
   fetch("/users/logout", {
-    method: "post",
+    method: "POST",
     headers: {
       "Authorization": `Bearer ${getToken()}`,
       "Content-Type": "application/json; charset=UTF-8"

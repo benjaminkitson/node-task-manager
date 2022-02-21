@@ -14,7 +14,7 @@ signupForm.addEventListener('submit', (e) => {
   const password = signupForm.querySelector('.password').value
   const data = JSON.stringify({name, email, password})
   fetch("/users", {
-    method: "post",
+    method: "POST",
     headers: {
       "Content-type": "application/json; charset=UTF-8"
     },
