@@ -28,7 +28,7 @@ body {
   margin-top: 30px;
 }
 
-#login-popup {
+#popup {
   position: absolute;
   display: none;
   justify-content: center;
@@ -39,7 +39,18 @@ body {
   background-color: rgba(158, 0, 0, 0.8);
 }
 
-#login-form-div {
+#login-partial, #signup-partial {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#signup-partial {
+  display: none;
+}
+
+#popup-contents {
   border: 1px solid black;
   background: white;
   border-radius: 3px;
@@ -50,14 +61,14 @@ body {
   align-items: center;
 }
 
-#login-form {
+#login-form, #signup-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-#login-form > input {
+#login-form > input, #signup-form > input {
   margin: 20px;
   height: 30px;
   width: 200px;
@@ -67,6 +78,6 @@ body {
   margin-top: 20px;
 }
 
-.login-errors {
+#login-errors, #login-errors {
   height: 20px;
 }

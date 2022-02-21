@@ -1,6 +1,8 @@
 const signUpHere = document.getElementById("sign-up-here")
+const signupPartial = document.getElementById("signup-partial")
+const loginPartial = document.getElementById("login-partial")
 
 signUpHere.addEventListener("click", function() {
-  console.log(this)
-  this.style.backgroundColor = "blue"
+  loginPartial.style.display = "none"
+  signupPartial.style.display = "flex"
 })

@@ -1,4 +1,4 @@
-const loginPopup = document.getElementById('login-popup')
+const loginPopup = document.getElementById('popup')
 
 function parseCookies() {
   const cookiePairs = document.cookie.split(';')
