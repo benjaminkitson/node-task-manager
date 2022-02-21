@@ -34,11 +34,18 @@ body {
   background-color: rgba(158, 0, 0, 0.8);
 }
 
-#login-form {
+#login-form-div {
   border: 1px solid black;
   background: white;
   border-radius: 3px;
-  padding: 50px;
+  padding: 20px 40px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#login-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -51,6 +58,10 @@ body {
   width: 200px;
 }
 
+#sign-up-here {
+  margin-top: 20px;
+}
+
 .login-errors {
-  height: 50px;
+  height: 20px;
 }
