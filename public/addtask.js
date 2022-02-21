@@ -1,4 +1,5 @@
 const addTask = document.getElementById('add-task-button')
+const cancelTask = document.getElementById('cancel-task')
 const taskPartial = document.getElementById('newtask-partial')
 const createTaskForm = document.getElementById('newtask-form')
 
@@ -25,8 +26,16 @@ createTaskForm.addEventListener('submit', (e) => {
         return errors.innerHTML = "Task creation failed"
       }
       popup.style.display = "none";
-      taskPartial.style.display = "none"
+      taskPartial.style.display = "none";
+      createTaskForm.querySelector('.title').value = ''
       tasks.push(data)
       renderTasks(tasks)
     })
+})
+
+cancelTask.addEventListener('click', () => {
+  popup.style.display = "none";
+  taskPartial.style.display = "none";
+  createTaskForm.querySelector('.title').value = ''
+  title = ''
 })

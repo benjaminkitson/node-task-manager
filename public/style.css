@@ -37,6 +37,7 @@ body {
   height: 100vh;
   width: 100vw;
   background-color: rgba(158, 0, 0, 0.8);
+  padding-bottom: 50px;
 }
 
 #login-partial, #signup-partial, #newtask-partial {
@@ -72,6 +73,7 @@ body {
   margin: 20px;
   height: 30px;
   width: 200px;
+  padding: 0px 5px;
 }
 
 #sign-up-here {
@@ -122,4 +124,10 @@ body {
 .task:hover > .buttons {
   opacity: 1;
   transition: opacity 0.3s
+}
+
+.cancel {
+  height: 20px;
+  width: 150px;
+  margin-top: 60px;
 }

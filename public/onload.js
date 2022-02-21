@@ -25,14 +25,17 @@ function getToken() {
 function taskBuilder(task) {
   const newTask = document.createElement("div")
   newTask.setAttribute("class", "task")
-  newTask.setAttribute("data-id", task.id)
+  newTask.setAttribute("data-id", task._id)
+
   const content = document.createTextNode(task.title)
   const buttons = document.createElement("div")
   buttons.setAttribute("class", "buttons")
+
   const deleteButton = document.createElement("button")
   deleteButton.setAttribute("class", "delete")
   const deleteButtonText = document.createTextNode("Delete")
   deleteButton.appendChild(deleteButtonText)
+
   buttons.appendChild(deleteButton)
   newTask.appendChild(content)
   newTask.appendChild(buttons)
@@ -65,6 +68,7 @@ function isLoggedIn() {
       loginPartial.style.display = "none"
       greeting.innerHTML = `Hello ${data.user.name}`
       tasks = data.tasks
+      console.log(tasks)
       renderTasks(tasks)
     })
 }
