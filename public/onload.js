@@ -30,13 +30,13 @@ function isLoggedIn() {
     }
   })
     .then(response => response.json())
-    .then((data) => {
-      if (data.error) {
+    .then((user) => {
+      if (user.error) {
         console.log("Le fail")
         return loginPopup.style.display = "flex"
       }
-
       loginPopup.style.display = "none"
+      greeting.innerHTML = `Hello ${user.name}`
     })
 }
 

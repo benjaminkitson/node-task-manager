@@ -1,13 +1,7 @@
 const loginForm = document.getElementById('login-form')
 const errors = document.querySelector('.login-errors')
+const greeting = document.getElementById('greeting')
 let tasks
-
-
-// Move this into separate file
-
-
-
-
 
 
 loginForm.addEventListener('submit', (e) => {
@@ -30,7 +24,8 @@ loginForm.addEventListener('submit', (e) => {
         return errors.innerHTML = "Invalid login details"
       }
 
-      errors.innerHTML = "Hello!"
+      greeting.innerHTML = `Hello ${data.user.name}`
+      loginPopup.style.display = "none"
       document.cookie = `taskToken=${data.token}`
       fetch("/tasks", {
       headers: {
@@ -40,6 +35,5 @@ loginForm.addEventListener('submit', (e) => {
       })
         .then(response => response.json())
         .then(data => console.log(data))
-        loginPopup.style.display = "none"
     })
 })
