@@ -11,21 +11,19 @@ button {
   border-radius: 3px;
   border: 1px solid grey;
   box-shadow: 3px 3px rgba(0, 0, 0, 0.2);
-  transition: transform 0.1s, box-shadow 0.1s;
-  transform: translateY(0px);
+  transition: transform 0.1s, box-shadow 0.2s;
 }
 
 button:hover {
   cursor: pointer;
   box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
-  transition: transform 0.1s, box-shadow 0.1s;
-  transform: translateY(0px);
+  transition: transform 0.1s, box-shadow 0.2s;
 }
 
 button:active {
   transform: translateY(3px);
   box-shadow: none;
-  transition: transform 0.1s, box-shadow 0.1s;
+  transition: transform 0.1s, box-shadow 0.2s;
 }
 
 body {
@@ -56,14 +54,14 @@ body {
   padding-bottom: 50px;
 }
 
-#login-partial, #signup-partial, #newtask-partial {
+#login-partial, #signup-partial, #newtask-partial, #areyousure-partial {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-#signup-partial, #newtask-partial {
+#signup-partial, #newtask-partial, #areyousure-partial {
   display: none;
 }
 
@@ -157,4 +155,8 @@ body {
   height: 20px;
   width: 150px;
   margin-top: 60px;
+}
+
+#log-out-button {
+  margin-top: 50px;
 }

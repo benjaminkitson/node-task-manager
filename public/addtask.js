@@ -22,8 +22,10 @@ createTaskForm.addEventListener('submit', (e) => {
   })
     .then(response => response.json())
     .then(data => {
-      if (data.error) {
-        return errors.innerHTML = "Task creation failed"
+      console.log(data)
+      if (data.errors) {
+        const titleText = createTaskForm.querySelector('.title')
+        return titleText.placeholder = "Required!"
       }
       popup.style.display = "none";
       taskPartial.style.display = "none";
@@ -37,5 +39,4 @@ cancelTask.addEventListener('click', () => {
   popup.style.display = "none";
   taskPartial.style.display = "none";
   createTaskForm.querySelector('.title').value = ''
-  title = ''
 })
