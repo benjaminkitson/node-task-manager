@@ -5,7 +5,8 @@ const createTaskForm = document.getElementById('newtask-form')
 
 addTask.addEventListener('click', () => {
   popup.style.display = "flex";
-  taskPartial.style.display = "flex"
+  taskPartial.style.display = "flex";
+  createTaskForm.firstElementChild.focus()
 })
 
 createTaskForm.addEventListener('submit', (e) => {
@@ -38,4 +39,6 @@ cancelTask.addEventListener('click', () => {
   popup.style.display = "none";
   taskPartial.style.display = "none";
   createTaskForm.querySelector('.title').value = ''
+  createTaskForm.firstElementChild.blur()
+
 })
