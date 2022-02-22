@@ -13,7 +13,7 @@ createTaskForm.addEventListener('submit', (e) => {
   const title = createTaskForm.querySelector('.title').value
   const data = JSON.stringify({ title })
   fetch("/tasks", {
-    method: "POST",
+    method: "post",
     headers: {
       "Content-type": "application/json; charset=UTF-8",
       "Authorization": `${getToken()}`

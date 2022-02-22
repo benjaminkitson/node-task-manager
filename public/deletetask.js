@@ -2,7 +2,7 @@ function deleteLocalTask(task, id) {
   const index = tasks.findIndex((task) => {
     return task._id === id
   })
-  tasks.splice(index, 1, 0)
+  tasks.splice(index, 1)
 }
 
 myTasks.addEventListener("click", (e) => {
