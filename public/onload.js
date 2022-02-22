@@ -25,7 +25,10 @@ function getToken() {
 function taskBuilder(task) {
   const newTask = document.createElement("div")
   newTask.setAttribute("class", "task")
+  if (task.completed) newTask.classList.add("class", "done-task")
   newTask.setAttribute("data-id", task._id)
+  newTask.setAttribute("data-completed", task.completed)
+
 
   const content = document.createTextNode(task.title)
   const buttons = document.createElement("div")
@@ -37,8 +40,9 @@ function taskBuilder(task) {
   deleteButton.appendChild(deleteButtonText)
 
   const doneButton = document.createElement("button")
-  doneButton.setAttribute("class", "mark-as-done")
-  const doneButtonText = document.createTextNode("Mark as done")
+  console.log(task.completed)
+  doneButton.setAttribute("class", task.completed ? "done" : "mark-as-done")
+  const doneButtonText = document.createTextNode(task.completed ? "Done" : "Mark as done")
   doneButton.appendChild(doneButtonText)
 
   buttons.appendChild(doneButton)

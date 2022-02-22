@@ -10,14 +10,15 @@
 button {
   border-radius: 3px;
   box-shadow: 3px 3px rgba(0, 0, 0, 0.2);
-  transition: transform 0.1s, box-shadow 0.2s;
+  transition: transform 0.1s, box-shadow 0.s;
   border: none;
 }
 
 button:hover {
   cursor: pointer;
-  box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
-  transition: transform 0.1s, box-shadow 0.2s;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.4);
+  transition: transform 0.1s, box-shadow 0.1s;
+  transform: translateY(-2px);
 }
 
 button:active {
@@ -50,7 +51,7 @@ body {
   z-index: 1;
   height: 100vh;
   width: 100vw;
-  background-color: rgba(158, 0, 0, 0.8);
+  background-color: rgba(0, 79, 158, 0.8);
   padding-bottom: 50px;
 }
 
@@ -74,6 +75,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 #login-form, #signup-form, #newtask-form {
@@ -134,15 +136,19 @@ body {
 .mark-as-done {
   width: 150px;
   height: 100%;
-  background-color: rgb(213, 255, 197);
+  background-color: rgba(197, 233, 255, 0.826);
   color: black;
   margin-left: 10px;
+}
+
+.done-task {
+  background-color: rgba(91, 214, 255, 0.361);
 }
 
 .done {
   width: 150px;
   height: 100%;
-  background-color: rgb(38, 144, 0);
+  background-color: rgb(0, 84, 144);
   color: white;
 }
 

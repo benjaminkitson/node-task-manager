@@ -48,7 +48,6 @@ taskRouter.patch('/tasks/:id', authenticate, (req, res) => {
     return permittedUpdates.includes(update)
   })
 
-
   if (!isValid) {
     return res.status(400).send({ error: "Invalid updates." })
   }
