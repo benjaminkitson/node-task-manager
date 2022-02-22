@@ -22,7 +22,6 @@ createTaskForm.addEventListener('submit', (e) => {
   })
     .then(response => response.json())
     .then(data => {
-      console.log(data)
       if (data.errors) {
         const titleText = createTaskForm.querySelector('.title')
         return titleText.placeholder = "Required!"

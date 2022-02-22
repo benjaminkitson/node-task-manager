@@ -21,7 +21,6 @@ myTasks.addEventListener("click", (e) => {
   .then(response => {
     task.remove()
     deleteLocalTask(task, taskId)
-    console.log(tasks)
   })
 }
 })

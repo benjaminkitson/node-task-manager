@@ -28,7 +28,6 @@ myTasks.addEventListener("click", (e) => {
         const newValue = value ? "false" : "true"
         task.setAttribute("data-completed", newValue)
         updateLocalTask(task, taskId, "completed", !value)
-        console.log(task)
 
         if (!value) {
           e.target.classList.replace("mark-as-done", "done")

@@ -40,7 +40,6 @@ function taskBuilder(task) {
   deleteButton.appendChild(deleteButtonText)
 
   const doneButton = document.createElement("button")
-  console.log(task.completed)
   doneButton.setAttribute("class", task.completed ? "done" : "mark-as-done")
   const doneButtonText = document.createTextNode(task.completed ? "Done" : "Mark as done")
   doneButton.appendChild(doneButtonText)
@@ -71,14 +70,12 @@ function isLoggedIn() {
     .then(response => response.json())
     .then((data) => {
       if (data.error) {
-        console.log("Le fail")
         return loginPopup.style.display = "flex"
       }
       popup.style.display = "none"
       loginPartial.style.display = "none"
       greeting.innerHTML = `Hi ${data.user.name}!`
       tasks = data.tasks
-      console.log(tasks)
       renderTasks(tasks)
     })
 }
