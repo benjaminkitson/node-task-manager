@@ -1,3 +1,10 @@
+function updateLocalTask(task, id, property, update) {
+  const index = tasks.findIndex((task) => {
+    return task._id === id
+  })
+  tasks[index][property] = update
+}
+
 myTasks.addEventListener("click", (e) => {
   let task
   let taskId
@@ -5,7 +12,6 @@ myTasks.addEventListener("click", (e) => {
     task = e.target.parentNode.parentNode
     taskId = e.target.parentNode.parentNode.dataset.id
     const value = (e.target.parentNode.parentNode.dataset.completed === "true")
-    console.log(task)
 
     fetch(`/tasks/${taskId}`, {
       method: "PATCH",
@@ -19,9 +25,11 @@ myTasks.addEventListener("click", (e) => {
     })
       .then(response => response.json())
       .then(data => {
-        const newValue = JSON.stringify(!value)
+        const newValue = value ? "false" : "true"
         task.setAttribute("data-completed", newValue)
-        console.log(value)
+        updateLocalTask(task, taskId, "completed", !value)
+        console.log(task)
+
         if (!value) {
           e.target.classList.replace("mark-as-done", "done")
           e.target.innerHTML = "Done"
